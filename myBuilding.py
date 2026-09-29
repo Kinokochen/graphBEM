@@ -116,7 +116,8 @@ def runMyBEM(
     # Specify Graph
     wW = 1- .25**2 #window-wall area
     dW = 1 - .25*.75 #door-wall area
-    interiorRooms = ["CR", "SS", "DR", "CV"]
+    #interiorRooms = ["CR", "SS", "DR", "CV"]
+    interiorRooms = ["SingleRoom"]
     roomList = [*interiorRooms, "OD", "RF", "FL"]
 
     connectivityMatrix = np.array([
