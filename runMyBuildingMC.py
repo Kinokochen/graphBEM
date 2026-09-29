@@ -137,7 +137,7 @@ def main(N = 300, runDays = 7, resultsKey = "timestr", randomSeed = 666, materia
 
 
     # %%
-    data, climate_zones = getWeatherData()
+    data, _, climate_zones = getWeatherData()
     dt = 30
 
 
@@ -187,8 +187,8 @@ def main(N = 300, runDays = 7, resultsKey = "timestr", randomSeed = 666, materia
         
         weatherProperties, dataSampled = sampleVentWeather(data, climate_zones, runDays, dt=dt, plot=False)
         weatherPropertiesRecord.append(weatherProperties)
-        dataSampled = dataSampled.infer_objects(copy=False)
-        dataSampled = dataSampled.resample(f"{dt}s").interpolate()
+        dataSampled = dataSampled.infer_objects().copy()
+        dataSampled = dataSampled.select_dtypes(include="number").resample(f"{dt}s").interpolate()
         chosenData.append(dataSampled)
 
     print("Generated BEM inputs")

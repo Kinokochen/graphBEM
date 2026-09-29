@@ -10,7 +10,8 @@ def runMC(inputs: list, parallel = True):
             client.shutdown()
         except:
             pass
-        client = Client()
+        #client = Client()
+        client = Client(n_workers=1, threads_per_worker=1, processes=False)
         display(client)
 
         inputs_futures = []

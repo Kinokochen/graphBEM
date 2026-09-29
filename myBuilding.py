@@ -73,10 +73,12 @@ def runMyBEM(
     wind_speed_OD = adjustWindSpeed(wind_speed, latitude, z0_new=0.3, z=1.5, wind_scaling=0.5)
 
     hrad = weather_data["Horizontal Shortwave Radiation"].values 
+    hrad = np.array(hrad, copy=True)
     hrad += weather_data["Horizontal Sky Longwave Radiation"].values
     hrad += weather_data["Horizontal Surfaces Longwave Radiation"].values * epsilonSky / alphaRoof #adjusted because treated as sky in rad calc
 
     vrad = weather_data["Vertical Shortwave Radiation"].values 
+    vrad = np.array(vrad, copy=True)
     vrad += weather_data["Vertical Sky Longwave Radiation"].values
     vrad += weather_data["Vertical Surfaces Longwave Radiation"].values * epsilonSky / alphaWalls #adjusted because treated as sky in rad calc
 
